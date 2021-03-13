@@ -1,10 +1,8 @@
 @{
-    # Set up a mini virtual environment...
     PSDependOptions             = @{
-        AddToPath  = $True
+        AddToPath  = $true
         Target     = 'output\RequiredModules'
-        Parameters = @{
-        }
+        Parameters = @{}
     }
 
     InvokeBuild                 = 'latest'
@@ -14,9 +12,8 @@
     ModuleBuilder               = 'latest'
     MarkdownLinkCheck           = 'latest'
     ChangelogManagement         = 'latest'
+    'Sampler.GitHubTasks'       = 'latest'
     'DscResource.Test'          = 'latest'
     'DscResource.AnalyzerRules' = 'latest'
     xDscResourceDesigner        = 'latest'
-    # PSPKI                       = 'latest'
-
 }

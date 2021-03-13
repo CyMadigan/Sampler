@@ -7,10 +7,149 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- New DSC Community template (`New-SampleModule -ModuleType newDscCommunity`).
+
+### Fixed
+
+- Fixes #222: Adding *.dll binary to gitattributes.
+- Fixes eol for file types .sh .svg .sh .mof
+- Fixes #225 by asking the question or assuming the default is `main` in most cases.
+- Readded the `Create_ChangeLog_GitHub_PR` task to the publish workflow and template.
+- Fixes newDscCommunity template missing the psm1 and the Required modules.
+
 ### Changed
 
+- Extracted the Common functions to be within the main Sampler module to enable re-usability.
+- Updated this project's `build.ps1` to load the Private/Public *.ps1 so it can build itselves without impacting Sampler templates.
+- Added empty functions' Unit test files (for subsequent PR when writing moving to Pester 5).
+- Added Comment-based help for the extracted functions.
+- Dropped the CodeCoverage Threshold of the project to reflect the newly discovered code (`Common.Functions.psm1` wasn't counted for code coverage).
+
+### Removed
+
+- Removed the GitHub functions to publish them in the `Sampler.GitHubTasks` module.
+
+## [0.109.4] - 2021-03-06
+### Added
+
+- Added the build_guestconfiguration_packages task to create GuestConfig packages using the GuestConfiguration module.
+- Added GCPackage template so that you can use `Add-Sample -Sample GCPackage` to add a GC Package to your Sampler project.
+- Added the gcpack meta task to call clean, build, and build_guestconfiguration_packages for you.
+
+## [0.109.3] - 2021-02-16
+
+### Fixed
+
+- Fixed bug when using `PesterScript` with the build task `Invoke_Pester_Tests`
+  when running Pester 5.
+
+### Deprecated
+
+- Update `build.ps1` with an alias `PesterPath` for the parameter `PesterScript`
+  so that repositories that move over to Pester 5 can future-proof the file
+  `azure-pipelines.yml` (for example when splitting tests over several jobs).
+  The parameter `PesterScript` is deprecated and will be removed when
+  Pester 4 support is removed some time in the future. Change scripts to 
+  `PesterPath` when migrating to Pester 5 tests.
+
+## [0.109.2] - 2021-01-13
+
+### Changed
+
+- The Deploy tasks `publish_nupkg_to_gallery` and `publish_module_to_gallery`
+  are now made mutually exclusive. For each deploy pipeline you must choose
+  to use either one. 
+  - `publish_nupkg_to_gallery` is using `nuget` to publish to the gallery.
+  - `publish_module_to_gallery` is using the cmdlet `Publish-Module` to
+    publish to the gallery.
+
+### Fixed
+
+- Fix issue in DscResourcesToExport task to properly process DscResource schema ([issue #230](https://github.com/gaelcolas/Sampler/issues/230)).
+- Fix uploading of code coverage when using the DSC Community template.
+
+## [0.109.1] - 2021-01-06
+
+### Fixed
+
+- Update the Readme.md to fix a few typos.
+- Fix wrong resource name is added in module manifest property DscResourcesToExport
+([issue #220](https://github.com/gaelcolas/Sampler/issues/220))
+
+## [0.109.0] - 2020-11-24
+
+### Changed
+
+- Updating all azure-pipeline.yaml to change Build Artifacts to Pipeline Artifacts ([issue #159](https://github.com/gaelcolas/Sampler/issues/159)).
+- Update plasterManifest.xml call by New-SampleModule :
+  - Add section modify to replace "FunctionsToExport = '*'" by "FunctionsToExport = ''" in new module manifest ([issue #67](https://github.com/gaelcolas/Sampler/issues/67)).
+  - Add section modify to add "Prerelease = ''" in "PSData" block  in new module manifest ([issue #69](https://github.com/gaelcolas/Sampler/issues/69)). 
+- Changing ClassResource.
+  - Add generic content in the class.
+  - Add pester tests.
+  - Add localizeddata.
+  - Update plasterManifest.xml.
+  - Add private functions.
+  - Add pester tests.
+  - Update Sampler integration tests.
+- Changing the Reasons property in the classes based resource template. It's now NotConfigurable.
+- Renamed Build_Module_ModuleBuilder task to Build_ModuleOutPut_ModuleBuilder.
+  Build_Module_ModuleBuilder is now a metatask that calls
+  Build_ModuleOutPut_ModuleBuilder and Build_DscResourcesToExport_ModuleBuilder tasks.
+
+### Added
+
+- Added new template ClassFolderResource
+- Added new function Get-ClassBasedResourceName on Common.Functions.psm1 module.
+  It's used to find the class-based resource defined in psm1 file.
+- Added new task Build_DscResourcesToExport_ModuleBuilder.
+  On build, it adds DscResources (class or Mof) in DscResourcesToExport manifest key.
+
+### Fixed
+
+- Fixed Test-ModuleManifest ([issue #208](https://github.com/gaelcolas/Sampler/issues/208)) 
+  in tasks.
+
+## [0.108.0] - 2020-09-14
+
+### Added
+
+- Added GitHub config element template.
+- Added vscode config element template.
+- Added a new template file for azure-pipelines.yml when using the
+  module type `'dsccommunity'`.
+- Added a new template and configuration for Codecov.io when using
+  module type `'dsccommunity'`.
+
+### Changed
+
+- Renamed the moduleType 'CompleteModule' to CompleteSample.
 - Updated changelog (removed folder creation on simple modules).
 - Updated doc.
+- Updated code style to match the DSC Community style guideline.
+- Updated logic that handles the installation on PSDepend in the bootstrap
+  file `Resolve-Dependency.ps1`.
+- Updated year in LICENSE.
+- Updated the template GitVersion.yml to use specific words to bump
+  major version (previously it bumped if the word was found anywhere in
+  the commit message even if it was part of for example a code variable).
+- Updated the template file build.yaml to make it more clean when using
+  the module type `'dsccommunity'`.
+- Updated so that the module type `'dsccommunity'` will add a CHANGELOG.md.
+- Updated so that the module type `'dsccommunity'` will add the GitHub templates.
+
+### Fixed
+
+- Fixed missing 'PSGallery' in build files when the Plaster parameter
+  `CustomRepo` is not assigned a value.
+- Fixed a whitespace issue in the template file Resolve-Dependency.psd1.
+- Rephrased comments in the template file build.yaml.
+
+### Removed
+
+- Removed the CompletModule_noBuild template as it's unecessary and add complexity to the template.
 
 ## [0.107.3] - 2020-09-10
 

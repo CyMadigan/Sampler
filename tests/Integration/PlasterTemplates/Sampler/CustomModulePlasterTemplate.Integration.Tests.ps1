@@ -32,8 +32,8 @@ Describe 'Custom Module Plaster Template' {
             $listOfExpectedFilesAndFolders = @(
 
             # Folders (relative to module root)
-
             '.github'
+            '.github/ISSUE_TEMPLATE'
             '.vscode'
             'output'
             'output/RequiredModules'
@@ -51,6 +51,7 @@ Describe 'Custom Module Plaster Template' {
             'source/Modules/Folder.Common'
             'source/Private'
             'source/Public'
+            'source/WikiSource'
             'tests'
             'tests/QA'
             'tests/Unit'
@@ -61,7 +62,10 @@ Describe 'Custom Module Plaster Template' {
             'tests/Unit/Public'
 
             # Files (relative to module root)
-
+            '.github/ISSUE_TEMPLATE/General.md'
+            '.github/ISSUE_TEMPLATE/Problem_with_resource.md'
+            '.github/ISSUE_TEMPLATE/Resource_proposal.md'
+            '.github/PULL_REQUEST_TEMPLATE.md'
             '.gitattributes'
             '.gitignore'
             '.kitchen.yml'
@@ -72,6 +76,7 @@ Describe 'Custom Module Plaster Template' {
             'CHANGELOG.md'
             'CODE_OF_CONDUCT.md'
             'CONTRIBUTING.md'
+            'SECURITY.md'
             'GitVersion.yml'
             'README.md'
             'RequiredModules.psd1'
@@ -123,6 +128,7 @@ Describe 'Custom Module Plaster Template' {
 
                 # Template properties
                 ModuleName        = $mockModuleName
+                MainGitBranch     = 'main'
                 ModuleAuthor      = 'SamplerTestUser'
                 ModuleDescription = 'Module description'
                 ModuleVersion     = '1.0.0'
@@ -171,6 +177,7 @@ Describe 'Custom Module Plaster Template' {
                 # Folders (relative to module root)
 
                 '.github'
+                '.github/ISSUE_TEMPLATE'
                 '.vscode'
                 'output'
                 'output/RequiredModules'
@@ -188,6 +195,7 @@ Describe 'Custom Module Plaster Template' {
                 'source/Modules/Folder.Common'
                 'source/Private'
                 'source/Public'
+                'source/WikiSource'
                 'tests'
                 'tests/QA'
                 'tests/Unit'
@@ -199,6 +207,10 @@ Describe 'Custom Module Plaster Template' {
 
                 # Files (relative to module root)
 
+                '.github/ISSUE_TEMPLATE/General.md'
+                '.github/ISSUE_TEMPLATE/Problem_with_resource.md'
+                '.github/ISSUE_TEMPLATE/Resource_proposal.md'
+                '.github/PULL_REQUEST_TEMPLATE.md'
                 '.gitattributes'
                 '.gitignore'
                 '.kitchen.yml'
@@ -209,6 +221,7 @@ Describe 'Custom Module Plaster Template' {
                 'CHANGELOG.md'
                 'CODE_OF_CONDUCT.md'
                 'CONTRIBUTING.md'
+                'SECURITY.md'
                 'GitVersion.yml'
                 'LICENSE'
                 'README.md'
@@ -260,6 +273,7 @@ Describe 'Custom Module Plaster Template' {
 
                 # Template properties
                 ModuleName        = $mockModuleName
+                MainGitBranch     = 'main'
                 ModuleAuthor      = 'SamplerTestUser'
                 ModuleDescription = 'Module description'
                 ModuleVersion     = '1.0.0'
@@ -308,6 +322,7 @@ Describe 'Custom Module Plaster Template' {
             $listOfExpectedFilesAndFolders = @(
 
                 '.github'
+                '.github/ISSUE_TEMPLATE'
                 '.vscode'
                 'output'
                 'output/RequiredModules'
@@ -325,6 +340,7 @@ Describe 'Custom Module Plaster Template' {
                 'source/Modules/Folder.Common'
                 'source/Private'
                 'source/Public'
+                'source/WikiSource'
                 'tests'
                 'tests/QA'
                 'tests/Unit'
@@ -336,6 +352,10 @@ Describe 'Custom Module Plaster Template' {
 
                 # Files (relative to module root)
 
+                '.github/ISSUE_TEMPLATE/General.md'
+                '.github/ISSUE_TEMPLATE/Problem_with_resource.md'
+                '.github/ISSUE_TEMPLATE/Resource_proposal.md'
+                '.github/PULL_REQUEST_TEMPLATE.md'
                 '.gitattributes'
                 '.gitignore'
                 '.kitchen.yml'
@@ -346,6 +366,7 @@ Describe 'Custom Module Plaster Template' {
                 'CHANGELOG.md'
                 'CODE_OF_CONDUCT.md'
                 'CONTRIBUTING.md'
+                'SECURITY.md'
                 'GitVersion.yml'
                 'LICENSE'
                 'README.md'
@@ -397,6 +418,7 @@ Describe 'Custom Module Plaster Template' {
 
                 # Template properties
                 ModuleName        = $mockModuleName
+                MainGitBranch     = 'main'
                 ModuleAuthor      = 'SamplerTestUser'
                 ModuleDescription = 'Module description'
                 ModuleVersion     = '1.0.0'
@@ -445,8 +467,8 @@ Describe 'Custom Module Plaster Template' {
             $listOfExpectedFilesAndFolders = @(
 
                 # Folders (relative to module root)
-
                 '.github'
+                '.github/ISSUE_TEMPLATE'
                 '.vscode'
                 'output'
                 'output/RequiredModules'
@@ -464,6 +486,7 @@ Describe 'Custom Module Plaster Template' {
                 'source/Modules/Folder.Common'
                 'source/Private'
                 'source/Public'
+                'source/WikiSource'
                 'tests'
                 'tests/QA'
                 'tests/Unit'
@@ -475,6 +498,10 @@ Describe 'Custom Module Plaster Template' {
 
                 # Files (relative to module root)
 
+                '.github/ISSUE_TEMPLATE/General.md'
+                '.github/ISSUE_TEMPLATE/Problem_with_resource.md'
+                '.github/ISSUE_TEMPLATE/Resource_proposal.md'
+                '.github/PULL_REQUEST_TEMPLATE.md'
                 '.gitattributes'
                 '.gitignore'
                 '.kitchen.yml'
@@ -485,6 +512,7 @@ Describe 'Custom Module Plaster Template' {
                 'CHANGELOG.md'
                 'CODE_OF_CONDUCT.md'
                 'CONTRIBUTING.md'
+                'SECURITY.md'
                 'GitVersion.yml'
                 'LICENSE'
                 'README.md'
@@ -537,6 +565,7 @@ Describe 'Custom Module Plaster Template' {
 
                 # Template properties
                 ModuleName        = $mockModuleName
+                MainGitBranch     = 'main'
                 ModuleAuthor      = 'SamplerTestUser'
                 ModuleDescription = 'Module description'
                 ModuleVersion     = '1.0.0'
@@ -615,6 +644,7 @@ Describe 'Custom Module Plaster Template' {
 
                 # Template properties
                 ModuleName        = $mockModuleName
+                MainGitBranch     = 'main'
                 ModuleAuthor      = 'SamplerTestUser'
                 ModuleDescription = 'Module description'
                 ModuleVersion     = '1.0.0'
@@ -692,6 +722,7 @@ Describe 'Custom Module Plaster Template' {
 
                 # Template properties
                 ModuleName        = $mockModuleName
+                MainGitBranch     = 'main'
                 ModuleAuthor      = 'SamplerTestUser'
                 ModuleDescription = 'Module description'
                 ModuleVersion     = '1.0.0'
@@ -772,6 +803,7 @@ Describe 'Custom Module Plaster Template' {
 
                 # Template properties
                 ModuleName        = $mockModuleName
+                MainGitBranch     = 'main'
                 ModuleAuthor      = 'SamplerTestUser'
                 ModuleDescription = 'Module description'
                 ModuleVersion     = '1.0.0'
@@ -850,6 +882,7 @@ Describe 'Custom Module Plaster Template' {
 
                 # Template properties
                 ModuleName        = $mockModuleName
+                MainGitBranch     = 'main'
                 ModuleAuthor      = 'SamplerTestUser'
                 ModuleDescription = 'Module description'
                 ModuleVersion     = '1.0.0'
@@ -909,6 +942,7 @@ Describe 'Custom Module Plaster Template' {
             '.gitignore'
             'CHANGELOG.md'
             'CODE_OF_CONDUCT.md'
+            'SECURITY.md'
             'GitVersion.yml'
             'README.md'
             'source/ModuleDsc.psd1'
@@ -931,6 +965,7 @@ Describe 'Custom Module Plaster Template' {
 
                 # Template properties
                 ModuleName        = $mockModuleName
+                MainGitBranch     = 'main'
                 ModuleAuthor      = 'SamplerTestUser'
                 ModuleDescription = 'Module description'
                 ModuleVersion     = '1.0.0'
@@ -1008,6 +1043,7 @@ Describe 'Custom Module Plaster Template' {
 
                 # Template properties
                 ModuleName        = $mockModuleName
+                MainGitBranch     = 'main'
                 ModuleAuthor      = 'SamplerTestUser'
                 ModuleDescription = 'Module description'
                 ModuleVersion     = '1.0.0'
@@ -1087,6 +1123,7 @@ Describe 'Custom Module Plaster Template' {
 
                 # Template properties
                 ModuleName        = $mockModuleName
+                MainGitBranch     = 'main'
                 ModuleAuthor      = 'SamplerTestUser'
                 ModuleDescription = 'Module description'
                 ModuleVersion     = '1.0.0'
@@ -1168,6 +1205,7 @@ Describe 'Custom Module Plaster Template' {
 
                 # Template properties
                 ModuleName        = $mockModuleName
+                MainGitBranch     = 'main'
                 ModuleAuthor      = 'SamplerTestUser'
                 ModuleDescription = 'Module description'
                 ModuleVersion     = '1.0.0'
@@ -1244,6 +1282,7 @@ Describe 'Custom Module Plaster Template' {
 
                 # Template properties
                 ModuleName        = $mockModuleName
+                MainGitBranch     = 'main'
                 ModuleAuthor      = 'SamplerTestUser'
                 ModuleDescription = 'Module description'
                 ModuleVersion     = '1.0.0'
@@ -1322,6 +1361,7 @@ Describe 'Custom Module Plaster Template' {
 
                 # Template properties
                 ModuleName        = $mockModuleName
+                MainGitBranch     = 'main'
                 ModuleAuthor      = 'SamplerTestUser'
                 ModuleDescription = 'Module description'
                 ModuleVersion     = '1.0.0'

@@ -32,9 +32,11 @@ Describe 'DSC Community Plaster Template' {
             $listOfExpectedFilesAndFolders = @(
                 # Folders (relative to module root)
 
+                '.github'
                 '.vscode'
                 'source'
                 'source/en-US'
+                'source/WikiSource'
                 'tests'
                 'output'
                 'output/RequiredModules'
@@ -42,12 +44,21 @@ Describe 'DSC Community Plaster Template' {
                 # Files (relative to module root)
 
                 '.gitattributes'
+                '.github/ISSUE_TEMPLATE'
+                '.github/PULL_REQUEST_TEMPLATE.md'
+                '.github/ISSUE_TEMPLATE/General.md'
+                '.github/ISSUE_TEMPLATE/Problem_with_resource.md'
+                '.github/ISSUE_TEMPLATE/Resource_proposal.md'
                 '.gitignore'
                 '.markdownlint.json'
                 'azure-pipelines.yml'
                 'build.ps1'
                 'build.yaml'
+                'CHANGELOG.md'
                 'CODE_OF_CONDUCT.md'
+                'SECURITY.md'
+                'LICENSE'
+                'codecov.yml'
                 'CONTRIBUTING.md'
                 'GitVersion.yml'
                 'RequiredModules.psd1'

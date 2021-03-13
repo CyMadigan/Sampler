@@ -44,13 +44,11 @@ param
     $BuildInfo = (property BuildInfo @{ })
 )
 
-Import-Module -Name "$PSScriptRoot/Common.Functions.psm1"
-
 # Synopsis: Making sure the Module meets some quality standard (help, tests).
 task Invoke_Pester_Tests {
     if ([System.String]::IsNullOrEmpty($ProjectName))
     {
-        $ProjectName = Get-ProjectName -BuildRoot $BuildRoot
+        $ProjectName = Get-SamplerProjectName -BuildRoot $BuildRoot
     }
 
     if (-not (Split-Path -IsAbsolute $OutputDirectory))
@@ -80,7 +78,7 @@ task Invoke_Pester_Tests {
     }
 
     $GetCodeCoverageThresholdParameters = @{
-        CodeCoverageThreshold = $CodeCoverageThreshold
+        RuntimeCodeCoverageThreshold = $CodeCoverageThreshold
         BuildInfo             = $BuildInfo
     }
 
@@ -158,10 +156,19 @@ task Invoke_Pester_Tests {
     }
 
     <#
-        If it is Pester 5 then switch over to Pester 4 variable name. This is
-        done to reduce the code changes needed to get Pester 5 compatibility.
+        For Pester 5, switch over to Pester 4 variable name. This is done to reduce
+        the code changes needed to get both Pester 4 and Pester 5 compatibility.
+
+        The variable PesterPath comes from the child key 'Path:' under the parent
+        key 'Pester:' in the build configuration file. For Pester 4 the key
+        is 'Script:' instead of 'Path:'.
+
+        For Pester 5, if the variable $PesterScript is set then the user passed in
+        a value in the parameter 'PesterScript' (most likely through the build.ps1).
+        If that is the case the value in $PesterScript take precedence. If there is
+        no value in $PesterScript then we set it to the value of $PesterPath.
     #>
-    if ($isPester5)
+    if ($isPester5 -and [System.String]::IsNullOrEmpty($PesterScript))
     {
         $PesterScript = $PesterPath
     }
@@ -242,7 +249,7 @@ task Invoke_Pester_Tests {
         PesterOutputFolder = $PesterOutputFolder
     }
 
-    $CodeCoverageOutputFile = Get-CodeCoverageOutputFile @getCodeCoverageOutputFile
+    $CodeCoverageOutputFile = Get-SamplerCodeCoverageOutputFile @getCodeCoverageOutputFile
 
     if (-not $CodeCoverageOutputFile)
     {
@@ -261,7 +268,7 @@ task Invoke_Pester_Tests {
     "`tCodeCoverageOutputFile          = $($pesterParams['CodeCoverageOutputFile'])"
     "`tCodeCoverageOutputFileFormat    = $($pesterParams['CodeCoverageOutputFileFormat'])"
 
-    $codeCoverageOutputFileEncoding = Get-CodeCoverageOutputFileEncoding -BuildInfo $BuildInfo
+    $codeCoverageOutputFileEncoding = Get-SamplerCodeCoverageOutputFileEncoding -BuildInfo $BuildInfo
 
     if (-not $isPester5 -and $codeCoverageThreshold -gt 0 -and $codeCoverageOutputFileEncoding)
     {
@@ -344,7 +351,7 @@ task Invoke_Pester_Tests {
             {
                 foreach ($scriptItem in $PesterScript)
                 {
-                    Write-Build -Color 'DarkGray' -Text "      ... $(Convert-HashtableToString -Hashtable $scriptItem)"
+                    Write-Build -Color 'DarkGray' -Text "      ... $(Convert-SamplerHashtableToString -Hashtable $scriptItem)"
 
                     if ($isPester5)
                     {
@@ -398,7 +405,7 @@ task Fail_Build_If_Pester_Tests_Failed {
 
     if ([System.String]::IsNullOrEmpty($ProjectName))
     {
-        $ProjectName = Get-ProjectName -BuildRoot $BuildRoot
+        $ProjectName = Get-SamplerProjectName -BuildRoot $BuildRoot
     }
 
     if (-not (Split-Path -IsAbsolute $OutputDirectory))
@@ -462,7 +469,7 @@ task Fail_Build_If_Pester_Tests_Failed {
 task Pester_If_Code_Coverage_Under_Threshold {
     if ([System.String]::IsNullOrEmpty($ProjectName))
     {
-        $ProjectName = Get-ProjectName -BuildRoot $BuildRoot
+        $ProjectName = Get-SamplerProjectName -BuildRoot $BuildRoot
     }
 
     if (-not $CodeCoverageThreshold)
@@ -549,7 +556,7 @@ task Pester_If_Code_Coverage_Under_Threshold {
 task Upload_Test_Results_To_AppVeyor -If { (property BuildSystem 'unknown') -eq 'AppVeyor' } {
     if ([System.String]::IsNullOrEmpty($ProjectName))
     {
-        $ProjectName = Get-ProjectName -BuildRoot $BuildRoot
+        $ProjectName = Get-SamplerProjectName -BuildRoot $BuildRoot
     }
 
     if (-not (Split-Path -IsAbsolute $OutputDirectory))

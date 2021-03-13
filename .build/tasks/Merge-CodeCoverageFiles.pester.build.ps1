@@ -14,8 +14,6 @@ param (
     $BuildInfo = (property BuildInfo @{ })
 )
 
-Import-Module -Name "$PSScriptRoot/Common.Functions.psm1"
-
 # Synopsis: Making sure the Module meets some quality standard (help, tests).
 task Merge_CodeCoverage_Files {
     if (!(Split-Path -isAbsolute $OutputDirectory))
@@ -102,7 +100,7 @@ function Start-CodeCoverageMerge
             Write-Verbose "Merging $($file.Name) into baseline"
             if (Confirm-CodeCoverageFileFormat -CodeCovFile $mergeDocument)
             {
-                $targetDocument = Merge-JaCoCoReports -OriginalDocument $targetDocument -MergeDocument $mergeDocument
+                $targetDocument = Merge-JaCoCoReport -OriginalDocument $targetDocument -MergeDocument $mergeDocument
                 $merged++
             }
             else
@@ -112,7 +110,7 @@ function Start-CodeCoverageMerge
         }
         Write-Verbose "Merge completed: Successfully merged $merged files into the baseline"
 
-        $targetDocument = Update-JaCoCoStatistics -Document $targetDocument
+        $targetDocument = Update-JaCoCoStatistic -Document $targetDocument
 
         $fullTargetFilePath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($TargetFile)
         $targetDocument.Save($fullTargetFilePath)
